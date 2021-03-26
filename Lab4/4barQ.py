@@ -84,7 +84,7 @@ class BMP180(IMU):
     # read uncompensated temperature value
     def getTempC(self) :
         # print ("Calculating temperature...")
-        self.write_byte(0xF4, 0x??)
+        self.write_byte(0xF4, 0x2E)
         time.sleep(0.005)
         
         ut = self.read_word(0xF6,0)
@@ -106,7 +106,7 @@ class BMP180(IMU):
     # read uncompensated pressure value
     def getPress(self) :
         # print ("Calculating temperature...")
-        self.write_byte(0xF4, 0x??)
+        self.write_byte(0xF4, 0x2E)
         time.sleep(0.005)
         
         ut = self.read_word(0xF6,0)
@@ -116,7 +116,7 @@ class BMP180(IMU):
         b5 = x1 + x2 
 
         #print ("Calculating pressure...")
-        self.write_byte(0xF4, 0x?? + (self.oversampling << 6))
+        self.write_byte(0xF4, 0x34 + (self.oversampling << 6))
         time.sleep(0.04)
 
         msb = self.read_byte(0xF6)

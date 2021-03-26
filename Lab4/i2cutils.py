@@ -43,4 +43,4 @@ def twos_compliment(high_byte, low_byte):
         return value
         
 if __name__ == "__main__":
-    print i2c_raspberry_pi_bus_number()
+    print (i2c_raspberry_pi_bus_number())
