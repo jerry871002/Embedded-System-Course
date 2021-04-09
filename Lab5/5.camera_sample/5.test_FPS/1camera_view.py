@@ -2,6 +2,7 @@
 from __future__ import print_function
 from imutils.video import FPS
 
+from datetime import datetime
 import imutils
 import time
 import cv2
@@ -25,6 +26,11 @@ try:
         fps.update()
 
         # Display image
+        try:
+            current_fps = fps._numFrames / (datetime.now() - fps._start).seconds
+            cv2.putText(frame, str(current_fps), (20, 200), cv2.FONT_HERSHEY_PLAIN, 10, (255, 0, 0))
+        except:
+            pass
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q"):

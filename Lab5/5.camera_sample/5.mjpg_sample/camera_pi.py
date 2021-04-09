@@ -11,6 +11,7 @@
 # Date   : 05/31/2015
 # Origin : http://blog.miguelgrinberg.com/post/video-streaming-with-flask
 
+from imutils.video.pivideostream import PiVideoStream
 import cv2
 
 class Camera(object):
@@ -22,17 +23,22 @@ class Camera(object):
             PROP_FRAME_WIDTH = cv2.CAP_PROP_FRAME_WIDTH
             PROP_FRAME_HEIGHT = cv2.CAP_PROP_FRAME_HEIGHT
 
-        self.video = cv2.VideoCapture(0)
+        # self.video = cv2.VideoCapture(0)
+        self.video = PiVideoStream().start()
         #self.video = cv2.VideoCapture(1)
         #self.video.set(PROP_FRAME_WIDTH, 640)
         #self.video.set(PROP_FRAME_HEIGHT, 480)
-        self.video.set(PROP_FRAME_WIDTH, 320)
-        self.video.set(PROP_FRAME_HEIGHT, 240)
+        # self.video.set(PROP_FRAME_WIDTH, 320)
+        # self.video.set(PROP_FRAME_HEIGHT, 240)
     
     def __del__(self):
-        self.video.release()
+        # self.video.release()
+        self.video.stop()
     
     def get_frame(self):
-        success, image = self.video.read()
+        while True:
+            image = self.video.read()
+            if image is not None:
+                break
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tostring()
