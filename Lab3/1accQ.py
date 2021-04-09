@@ -54,9 +54,9 @@ class ADXL345(IMU):
     
     def __init__(self) :
         #Class Properties
-        self.Xoffset = -0.01
-        self.Yoffset = -0.008
-        self.Zoffset = 0.098
+        self.Xoffset = 0.02
+        self.Yoffset = -0.03
+        self.Zoffset = 0.03
         self.Xraw = 0.0
         self.Yraw = 0.0
         self.Zraw = 0.0
@@ -140,10 +140,10 @@ try:
         adxl345.getY()
         adxl345.getZ()
 
-        # print ("ACC: ")
-        # print ("x = %.3f m/s2" % ( adxl345.X ))
-        # print ("y = %.3f m/s2" % ( adxl345.Y ))
-        # print ("z = %.3f m/s2" % ( adxl345.Z ))
+        print ("ACC: ")
+        print ("x = %.3f m/s2" % ( adxl345.X ))
+        print ("y = %.3f m/s2" % ( adxl345.Y ))
+        print ("z = %.3f m/s2" % ( adxl345.Z ))
         # print ("NORM:")
         # print ("%.3f" % ( pow(pow(adxl345.X, 2)+pow(adxl345.Y, 2)+pow(adxl345.Z, 2), 0.5) ))
         
@@ -153,8 +153,8 @@ try:
         # print ("x = %.3f" % ( adxl345.Xraw ))
         # print ("y = %.3f" % ( adxl345.Yraw ))
         # print ("z = %.3f" % ( adxl345.Zraw ))
-        print ("pitch = %.3f" % ( adxl345.getPitch() ))
-        print ("roll = %.3f" % ( adxl345.getRoll() ))
+        # print ("pitch = %.3f" % ( adxl345.getPitch() ))
+        # print ("roll = %.3f" % ( adxl345.getRoll() ))
         print()
         time.sleep(1)
 
