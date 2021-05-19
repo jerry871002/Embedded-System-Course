@@ -4,7 +4,7 @@ import numpy as np
 import librosa.display
 
 
-y, sr = librosa.load('ex.wav')
+y, sr = librosa.load('Example.mp3')
 mfccs = librosa.feature.mfcc(y=y, sr=sr)
 
 print (mfccs)

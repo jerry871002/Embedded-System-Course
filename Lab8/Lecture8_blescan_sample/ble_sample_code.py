@@ -30,13 +30,28 @@ def ble_scan(sock):
         raw_uuid = ""
         for word in beacon.uuid.split('-'):
             raw_uuid = raw_uuid + word
-        if raw_uuid == "00000000111111110000000000556601":
+        if raw_uuid == "00000000000000000000000000000000":
             print("raw_uuid", raw_uuid)
             print("uuid:", beacon.uuid)
             print("major:", beacon.major, ", minor:", beacon.minor, ", txpower:", beacon.unknown)
             print("rssi", beacon.rssi)
+            print("distance", cal_distance(beacon.unknown, beacon.rssi))
             print("--------")
+
     return rssiDict
+
+def cal_distance(txpower, rssi):
+    txpower = float(txpower)
+    rssi = float(rssi)
+
+    if rssi == 0:
+        return -1
+
+    ratio = rssi / txpower
+    if ratio < 1:
+        return math.pow(ratio, 10)
+    else:
+        return 0.42093 * math.pow(ratio, 6.9476) + 0.54992
 
 def main():
 
