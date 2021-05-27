@@ -5,11 +5,11 @@ import datetime
 
 # initialize GPIO
 GPIO.setwarnings(True)
-#GPIO.setmode(GPIO.BCM)
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
+# GPIO.setmode(GPIO.BOARD)
 
 # read data using pin 
-instance = dht11.DHT11(pin=16) # GPIO pin number if GPIO.BCM
+instance = dht11.DHT11(pin=18) # GPIO pin number if GPIO.BCM
 
 try:
     while True:

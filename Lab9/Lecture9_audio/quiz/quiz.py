@@ -21,7 +21,7 @@ def recognize_command():
     with command as source:
         print("Use audio file as input!")
         audio = r.record(source)
-    
+
     # recognize speech using Google Speech Recognition
     try:
         result = r.recognize_google(audio).split()
@@ -39,8 +39,8 @@ def measure():
     GPIO.setwarnings(True)
     GPIO.setmode(GPIO.BOARD)
 
-    # read data using pin 
-    instance = dht11.DHT11(pin=7)
+    # read data using pin
+    instance = dht11.DHT11(pin=12)
 
     print('Measuring temperature...')
     while True:
@@ -53,6 +53,7 @@ def result_audio(temp, humid):
     print('Generating result audio file...')
     tts = gTTS(text=f'the temperature is {temp} degree and the humidity is {humid} percent', lang='en')
     tts.save('result.mp3')
+    print(temp, humid)
 
     os.system('omxplayer -o local -p result.mp3 > /dev/null 2>&1')
 
